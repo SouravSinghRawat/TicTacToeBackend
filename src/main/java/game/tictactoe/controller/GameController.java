@@ -7,6 +7,7 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class GameController {
@@ -16,6 +17,11 @@ public class GameController {
     public GameController(GameService gameService, SimpMessagingTemplate messagingTemplate) {
         this.gameService = gameService;
         this.messagingTemplate = messagingTemplate;
+    }
+
+    @GetMapping("/")
+    public String healthCheck() {
+        return "Tic-Tac-Toe Server is Running!";
     }
 
     @MessageMapping("/game.create")
