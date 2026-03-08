@@ -12,9 +12,13 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer{
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry){
-        registry.addEndpoint("/ws-game").setAllowedOriginPatterns("https://tictactoefrontend-sigma.vercel.app/").withSockJS();
+        registry.addEndpoint("/ws-game").setAllowedOriginPatterns(
+                "http://localhost:3000",
+                "https://tictactoefrontend-sigma.vercel.app"
+        ).withSockJS();
     }
 
+    @Override
     public void configureMessageBroker(MessageBrokerRegistry registry){
         registry.setApplicationDestinationPrefixes("/app");
         registry.enableSimpleBroker("/topic");
